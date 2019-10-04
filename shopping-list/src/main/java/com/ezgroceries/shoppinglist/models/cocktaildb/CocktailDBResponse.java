@@ -1,7 +1,6 @@
 package com.ezgroceries.shoppinglist.models.cocktaildb;
 
 import java.util.List;
-import java.util.UUID;
 
 public class CocktailDBResponse {
 
