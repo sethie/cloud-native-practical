@@ -5,30 +5,30 @@ import java.util.UUID;
 
 public class Cocktail {
 
-    private UUID uuid;
+    private UUID cocktailId;
     private String name;
-    private String servedIn;
+    private String glass;
     private String instructions;
     private String imageUrl;
     private List<String> ingredients;
 
     public Cocktail() {}
 
-    public Cocktail(UUID uuid, String name, String servedIn, String instructions, String imageUrl, List ingredients) {
-        this.uuid = uuid;
+    public Cocktail(UUID cocktailId, String name, String glass, String instructions, String imageUrl, List<String> ingredients) {
+        this.cocktailId = cocktailId;
         this.name = name;
-        this.servedIn = servedIn;
+        this.glass = glass;
         this.instructions = instructions;
         this.imageUrl = imageUrl;
         this.ingredients = ingredients;
     }
 
-    public UUID getUUID() {
-        return uuid;
+    public UUID getCocktailId() {
+        return cocktailId;
     }
 
-    public void setUUID(UUID uuid) {
-        this.uuid = uuid;
+    public void setCocktailId(UUID uuid) {
+        this.cocktailId = uuid;
     }
 
     public String getName() {
@@ -39,12 +39,12 @@ public class Cocktail {
         this.name = name;
     }
 
-    public String getServedIn() {
-        return servedIn;
+    public String getGlass() {
+        return glass;
     }
 
-    public void setServedIn(String servedIn) {
-        this.servedIn = servedIn;
+    public void setGlass(String glass) {
+        this.glass = glass;
     }
 
     public String getInstructions() {

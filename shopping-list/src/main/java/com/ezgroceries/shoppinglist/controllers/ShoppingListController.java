@@ -35,7 +35,7 @@ public class ShoppingListController {
     public List<CocktailIdClass> addCocktailsToShoppingList(@PathVariable UUID shoppingListId, @RequestBody List<CocktailIdClass> cocktailIds) {
         for (CocktailIdClass cocktailId: cocktailIds) {
             for (Cocktail cocktail: CocktailController.getDummyCocktails()) {
-                if (cocktail.getUUID().equals(cocktailId.getCocktailId())) {
+                if (cocktail.getCocktailId().equals(cocktailId.getCocktailId())) {
                     for (String ingredient: cocktail.getIngredients()) {
                         dummyStephanieShoppinglist.addIngredient(ingredient);
                     }
