@@ -10,7 +10,9 @@ public class Cocktail {
     private String servedIn;
     private String instructions;
     private String imageUrl;
-    private List ingredients;
+    private List<String> ingredients;
+
+    public Cocktail() {}
 
     public Cocktail(UUID uuid, String name, String servedIn, String instructions, String imageUrl, List ingredients) {
         this.uuid = uuid;
@@ -61,7 +63,7 @@ public class Cocktail {
         this.imageUrl = imageUrl;
     }
 
-    public List getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
@@ -69,5 +71,23 @@ public class Cocktail {
         this.ingredients = ingredients;
     }
 
+    public static class CocktailIdClass {
+
+        private UUID cocktailId;
+
+        public CocktailIdClass() {}
+
+        public CocktailIdClass(UUID cocktailId) {
+            this.cocktailId = cocktailId;
+        }
+
+        public UUID getCocktailId() {
+            return cocktailId;
+        }
+
+        public void setCocktailId(UUID cocktailId) {
+            this.cocktailId = cocktailId;
+        }
+    }
 
 }

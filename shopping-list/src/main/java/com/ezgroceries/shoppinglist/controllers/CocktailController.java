@@ -18,7 +18,7 @@ public class CocktailController {
         return getDummyCocktails();
     }
 
-    private List<Cocktail> getDummyCocktails() {
+    public static List<Cocktail> getDummyCocktails() {
         return Arrays.asList(
                 new Cocktail(
                         UUID.fromString("23b3d85a-3928-41c0-a533-6538a71e17c4"), "Margerita",
