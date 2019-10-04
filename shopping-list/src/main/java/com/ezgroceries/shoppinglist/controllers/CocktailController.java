@@ -29,7 +29,7 @@ public class CocktailController {
     @GetMapping
     public List<Cocktail> get(@RequestParam String search) {
         CocktailDBResponse cocktailDBResponse = this.cocktailDB.searchCocktails(search);
-        if (!cocktailDBResponse.getDrinks().isEmpty()) {
+        if (cocktailDBResponse.getDrinks() != null && !cocktailDBResponse.getDrinks().isEmpty()) {
             for(CocktailDBResponse.Drink drink: cocktailDBResponse.getDrinks()) {
                 cocktails.add(new Cocktail(UUID.randomUUID(), drink.getStrDrink(),
                         drink.getStrGlass(), drink.getStrInstructions(), drink.getStrDrinkThumb(), convertIngredientsToList(drink)));

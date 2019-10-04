@@ -1,6 +1,5 @@
 package com.ezgroceries.shoppinglist;
 
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -31,8 +30,8 @@ public class ShoppingListApplicationTests {
 
 	@Test
 	public void getCocktail() throws Exception {
-		this.mockMvc.perform(get("http://localhost:8080/cocktails?search=test")).andDo(print()).andExpect(status().isOk())
-				.andExpect(header().string("Content-Type", "application/json;charset=UTF-8"));
+		this.mockMvc.perform(get("http://localhost:8080/cocktails?search=russian")).andDo(print()).andExpect(status().isOk())
+				.andExpect(content().contentType("application/json;charset=UTF-8"));
 
 	}
 
