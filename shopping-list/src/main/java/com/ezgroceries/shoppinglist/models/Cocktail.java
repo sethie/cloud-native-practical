@@ -1,5 +1,8 @@
 package com.ezgroceries.shoppinglist.models;
 
+import com.ezgroceries.shoppinglist.storage.entities.CocktailEntity;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +16,12 @@ public class Cocktail {
     private List<String> ingredients;
 
     public Cocktail() {}
+
+    public Cocktail(CocktailEntity cocktailEntity) {
+        this.cocktailId = cocktailEntity.getId();
+        this.name = cocktailEntity.getName();
+        this.ingredients = new ArrayList<>();
+    }
 
     public Cocktail(UUID cocktailId, String name, String glass, String instructions, String imageUrl, List<String> ingredients) {
         this.cocktailId = cocktailId;
