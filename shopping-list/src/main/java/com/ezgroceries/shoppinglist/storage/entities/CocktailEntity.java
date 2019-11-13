@@ -2,10 +2,7 @@ package com.ezgroceries.shoppinglist.storage.entities;
 
 import com.ezgroceries.shoppinglist.storage.entities.converters.StringSetConverter;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
@@ -14,7 +11,8 @@ import java.util.UUID;
 public class CocktailEntity {
     @Id
     private UUID id;
-    private String id_drink;
+    @Column(name="ID_DRINK")
+    private String idDrink;
     private String name;
     @Convert(converter = StringSetConverter.class)
     private Set<String> ingredients;
@@ -28,11 +26,11 @@ public class CocktailEntity {
     }
 
     public String getId_drink() {
-        return id_drink;
+        return idDrink;
     }
 
     public void setId_drink(String id_drink) {
-        this.id_drink = id_drink;
+        this.idDrink = id_drink;
     }
 
     public String getName() {
