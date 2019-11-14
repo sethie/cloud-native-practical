@@ -34,8 +34,8 @@ public class ShoppingListController {
         return shoppingListService.getAll();
     }
 
-//    @GetMapping(value = "/{shoppingListId}")
-//    public ShoppingList getShoppingList(@PathVariable UUID shoppingListId) {
-//        return shoppingListService.getShoppingList(shoppingListId);
-//    }
+    @GetMapping(value = "/{shoppingListId}")
+    public ShoppingList getShoppingList(@PathVariable UUID shoppingListId) {
+        return shoppingListService.getShoppingList(shoppingListId);
+    }
 }

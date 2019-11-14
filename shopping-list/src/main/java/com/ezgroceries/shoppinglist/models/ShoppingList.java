@@ -18,6 +18,12 @@ public class ShoppingList {
         this.ingredients = new ArrayList<>();
     }
 
+    public ShoppingList(ShoppingListEntity shoppingListEntity, List<String> ingredients) {
+        this.shoppingListId = shoppingListEntity.getId();
+        this.name = shoppingListEntity.getName();
+        this.ingredients = ingredients;
+    }
+
     public UUID getShoppingListId() {
         return shoppingListId;
     }

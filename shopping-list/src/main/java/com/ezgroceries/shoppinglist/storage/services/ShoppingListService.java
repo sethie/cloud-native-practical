@@ -1,9 +1,11 @@
 package com.ezgroceries.shoppinglist.storage.services;
 
 import com.ezgroceries.shoppinglist.models.Cocktail;
+import com.ezgroceries.shoppinglist.storage.entities.CocktailEntity;
 import com.ezgroceries.shoppinglist.storage.entities.CocktailShoppingListEntity;
 import com.ezgroceries.shoppinglist.storage.entities.ShoppingListEntity;
 import com.ezgroceries.shoppinglist.models.ShoppingList;
+import com.ezgroceries.shoppinglist.storage.repositories.CocktailRepository;
 import com.ezgroceries.shoppinglist.storage.repositories.CocktailShoppingListRepository;
 import com.ezgroceries.shoppinglist.storage.repositories.ShoppingListRepository;
 import org.springframework.stereotype.Service;
@@ -17,10 +19,14 @@ public class ShoppingListService {
 
     private final ShoppingListRepository shoppingListRepository;
     private final CocktailShoppingListRepository cocktailShoppingListRepository;
+    private final CocktailRepository cocktailRepository;
 
-    public ShoppingListService(ShoppingListRepository shoppingListRepository, CocktailShoppingListRepository cocktailShoppingListRepository) {
+    public ShoppingListService(ShoppingListRepository shoppingListRepository,
+                               CocktailShoppingListRepository cocktailShoppingListRepository,
+                               CocktailRepository cocktailRepository) {
         this.shoppingListRepository = shoppingListRepository;
         this.cocktailShoppingListRepository = cocktailShoppingListRepository;
+        this.cocktailRepository = cocktailRepository;
     }
 
     public ShoppingList create(String shoppingListName) {
@@ -53,11 +59,16 @@ public class ShoppingListService {
         }
     }
 
-//    public ShoppingList getShoppingList(UUID shoppingListId) {
-//        List<CocktailShoppingListEntity> cocktailShoppingList = cocktailShoppingListRepository.findByShoppingListId(shoppingListId);
-//        for (CocktailShoppingListEntity cocktailShoppingListEntity: cocktailShoppingList) {
-//            cocktailShoppingListEntity.getCocktail_id();
-//        }
-//    }
+    public ShoppingList getShoppingList(UUID shoppingListId) {
+        ShoppingListEntity shoppingListEntity = shoppingListRepository.getOne(shoppingListId);
+        List<String> ingredients = new ArrayList<>();
+        List<CocktailShoppingListEntity> cocktailShoppingList = cocktailShoppingListRepository.findByShoppingListId(shoppingListId);
+        for (CocktailShoppingListEntity cocktailShoppingListEntity: cocktailShoppingList) {
+            CocktailEntity cocktail = cocktailRepository.getOne(cocktailShoppingListEntity.getCocktail_id());
+            cocktail.getIngredients().removeAll(ingredients);
+            ingredients.addAll(cocktail.getIngredients());
+        }
+        return new ShoppingList(shoppingListEntity, ingredients);
+    }
 
 }
