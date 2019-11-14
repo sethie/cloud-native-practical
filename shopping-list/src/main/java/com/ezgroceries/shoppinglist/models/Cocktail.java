@@ -1,5 +1,9 @@
 package com.ezgroceries.shoppinglist.models;
 
+import com.ezgroceries.shoppinglist.models.cocktaildb.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.storage.entities.CocktailEntity;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +17,12 @@ public class Cocktail {
     private List<String> ingredients;
 
     public Cocktail() {}
+
+    public Cocktail(CocktailEntity cocktailEntity) {
+        this.cocktailId = cocktailEntity.getId();
+        this.name = cocktailEntity.getName();
+        this.ingredients = new ArrayList<>();
+    }
 
     public Cocktail(UUID cocktailId, String name, String glass, String instructions, String imageUrl, List<String> ingredients) {
         this.cocktailId = cocktailId;
@@ -69,6 +79,33 @@ public class Cocktail {
 
     public void setIngredients(List ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public static List<String> convertIngredientsToList(CocktailDBResponse.Drink drink) {
+        ArrayList<String> ingredients = new ArrayList<>();
+        addToListIfNotEmpty(drink.getStrIngredient1(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient2(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient3(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient4(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient5(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient6(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient7(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient8(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient9(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient10(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient11(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient12(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient13(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient14(), ingredients);
+        addToListIfNotEmpty(drink.getStrIngredient15(), ingredients);
+
+        return ingredients;
+    }
+
+    private static void addToListIfNotEmpty(String item, List list) {
+        if (item != null && !item.isEmpty()) {
+            list.add(item);
+        }
     }
 
     public static class CocktailIdClass {
