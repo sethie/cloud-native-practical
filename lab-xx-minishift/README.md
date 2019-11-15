@@ -17,12 +17,13 @@ https://github.com/minishift/minishift
 
 > Minishift is a tool that helps you run OpenShift locally by running a single-node OpenShift cluster inside a VM. You can try out OpenShift or develop with it, day-to-day, on your local host.
 
-Install xhyve
+Install hyperkit (https://github.com/minishift/minishift/blob/master/docs/source/getting-started/setting-up-virtualization-environment.adoc#setting-up-hyperkit-driver)
 ```
 brew update
-brew install docker-machine-driver-xhyve
-sudo chown root:wheel /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
-sudo chmod u+s /usr/local/opt/docker-machine-driver-xhyve/bin/docker-machine-driver-xhyve
+brew install docker-machine-driver-hyperkit
+(If brew fails, you can manually install with: $ sudo curl -L  https://github.com/machine-drivers/docker-machine-driver-hyperkit/releases/download/v1.0.0/docker-machine-driver-hyperkit -o /usr/local/bin/docker-machine-driver-hyperkit)
+sudo chown root:wheel /usr/local/bin/docker-machine-driver-hyperkit
+sudo chmod u+s,+x /usr/local/bin/docker-machine-driver-hyperkit
 ```
 
 Install the OpenShift CLI
@@ -37,7 +38,7 @@ brew cask install minishift
 
 Start Minishift
 ```
-minishift start --vm-driver xhyve
+minishift start --vm-driver hyperkit
 ```
 
 During this process, note down the IP address of the VM, example:
@@ -62,7 +63,7 @@ minishift stop
 Start minishift again, but now add arguments to configure an insecure registry. This will make sure that the docker engine in the minishift VM is able to access the registry that is integrated in minishift.
 
 ```
-minishift start --vm-driver xhyve --insecure-registry 172.30.0.0/16 --insecure-registry minishift --insecure-registry docker-registry-default.$(minishift ip).nip.io:80
+minishift start --vm-driver hyperkit --insecure-registry 172.30.0.0/16 --insecure-registry minishift --insecure-registry docker-registry-default.$(minishift ip).nip.io:80
 ```
 
 Configure oc (The openshiftconfig binary) on your terminal.
@@ -123,6 +124,15 @@ https://docs.okd.io/latest/minishift/using/docker-daemon.html
 minishift docker-env
 eval $(minishift docker-env)
 ```
+
+In the logging you will see something like:
+```
+Logged into "https://192.168.64.2:8443" as "system:admin" using existing credentials.
+
+```
+
+Browse to `https://192.168.64.2:8443` and login as admin:admin.
+At the right top menu, press `copy login command` and paste it in your terminal
 
 Now login to the Docker registry:
 ```

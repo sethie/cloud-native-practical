@@ -12,7 +12,7 @@ Now the Cocktail functionality is successful we can expand our application and a
 Basic requirements:
 
 * Add a meal search API (similar to the cocktails one)  
-* Add the ability to add meals to a shopping sist (similar to the cocktails one)
+* Add the ability to add meals to a shopping dist (similar to the cocktails one)
 * Return all the distinct ingredients of a Shopping List, extracted from both added cocktails and meals. 
 
 ## Commit and tag your work
